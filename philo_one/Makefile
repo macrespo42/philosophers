@@ -2,13 +2,13 @@ NAME = philo_one
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -lpthread
+CFLAGS = -Wall -Wextra -Werror -I includes/
 
 HEADER = philo_one.h
 
-MAIN = main
+BUILTINS = main
 
-SRC = $(addsuffix .c, $(MAIN))
+SRC = $(addsuffix .c, $(addprefix srcs/, $(BUILTINS)))
 
 OBJ = $(SRC:c=o)
 
