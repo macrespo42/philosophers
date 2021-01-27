@@ -6,9 +6,9 @@ CFLAGS = -Wall -Wextra -Werror -I includes/
 
 HEADER = philo_one.h
 
-BUILTINS = main
+PHILO_ONE = main error parse tools
 
-SRC = $(addsuffix .c, $(addprefix srcs/, $(BUILTINS)))
+SRC = $(addsuffix .c, $(addprefix srcs/, $(PHILO_ONE)))
 
 OBJ = $(SRC:c=o)
 

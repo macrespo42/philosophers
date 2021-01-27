@@ -1,0 +1,5 @@
+.DS_Store
+*/.DS_Store
+*/*/.DS_Store
+*/*/*.o
+./philo_one/philo_one
