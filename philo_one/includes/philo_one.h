@@ -20,6 +20,8 @@ typedef struct s_args {
     int must_eat_nb;
 }              t_args;
 
+typedef struct timeval timeval;
+
 int			ft_atoi(const char *str);
 int         print_error(const char *error_msg);
 int         get_philo_infos(int ac, char **av, t_args *args);
