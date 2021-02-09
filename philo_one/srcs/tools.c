@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/01/27 14:49:26 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/09 15:58:06 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int			ft_atoi(const char *str)
 	int		res;
 	int		neg;
 
-	i = -1;
+	i = 0;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\r' || str[i] == '\v'
 	|| str[i] == '\f' || str[i] == ' ')
 		i++;

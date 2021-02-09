@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:47:52 by macrespo          #+#    #+#             */
-/*   Updated: 2021/01/27 15:03:00 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/09 15:59:15 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ int    get_philo_infos(int ac, char **av, t_args *args)
     args->time_to_sleep = ft_atoi(av[4]);
     if (ac == 6)
     {
-        args->must_eat_nb = 1;
+        args->must_eat_defined = 1;
         args->time_must_eat = ft_atoi(av[5]);
     }
     else
-        args->must_eat_nb = 0;
+        args->must_eat_defined = 0;
+    debug_print(args);
     if (args->philos_nb <= 0 || args->time_to_die < 0 || 
         args->time_to_eat < 0 || args->time_to_sleep < 0)
         return (EXIT_FAILURE);
-    if (args->must_eat_nb == 1 && args->time_must_eat <= 0)
+    if (args->must_eat_defined == 1 && args->time_must_eat <= 0)
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }

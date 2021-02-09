@@ -17,7 +17,7 @@ typedef struct s_args {
     int time_to_eat;
     int time_to_sleep;
     int time_must_eat;
-    int must_eat_nb;
+    int must_eat_defined;
 }              t_args;
 
 typedef struct timeval timeval;
