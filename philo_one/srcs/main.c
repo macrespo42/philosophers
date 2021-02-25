@@ -6,15 +6,40 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/01/28 12:31:44 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:38:47 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int     main(int ac, char **av) {
+int init_philos(t_args args)
+{
+    t_philo **philos;
+    int i;
+
+    philos = malloc(sizeof(t_philo*) * args.philos_nb);
+    if (!philos)
+        return (EXIT_FAILURE);
+    i = 0;
+    while (i < args.philos_nb)
+    {
+        // create phtread and init philo struct
+        i += 2;
+    }
+    i = 1;
+    while (i < args.philos_nb)
+    {
+        // create phtread and init philo struct
+        i += 2;
+    }
+    return (EXIT_SUCCESS);
+}
+
+int     main(int ac, char **av)
+{
     t_args args;
-    timeval current_time;
+    t_timeval current_time;
+    // t_philo **philo;
 
     if (ac >= 5 && ac < 7)
     {
@@ -23,7 +48,7 @@ int     main(int ac, char **av) {
         gettimeofday(&current_time, NULL);
             // allocate array of philos
             // start threads
-            // gerer les fourchettes avec les mutex ???
+            // mutex ??
     }
     else 
         return (print_error("Error: bad numbers of arguments"));
