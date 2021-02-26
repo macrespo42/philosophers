@@ -6,11 +6,27 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/02/26 13:55:51 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:12:13 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+void	free_philos(t_philo *head, t_args args)
+{
+	int		i;
+	t_philo	*tmp;
+
+	i = 0;
+	while (i < args.philos_nb)
+	{
+		tmp = head;
+		head = head->next;
+		ft_memdel(tmp);
+		i++;
+	}
+	ft_memdel(head);
+}
 
 t_philo	*init_link(int id)
 {

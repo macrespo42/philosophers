@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/02/25 15:46:29 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/26 14:03:59 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,10 @@ int			ft_atoi(const char *str)
 		i++;
 	}
 	return (res * neg);
+}
+
+void ft_memdel(void *ptr)
+{
+	free(ptr);
+	ptr = NULL;
 }

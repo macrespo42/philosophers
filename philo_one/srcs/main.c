@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/02/26 13:55:12 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/26 15:17:34 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		main(int ac, char **av)
 			return (print_error("Error: bad arguments"));
 		gettimeofday(&current_time, NULL);
 		head = init_philos(args);
+		free_philos(head, args);
 	}
 	else
 		return (print_error("Error: bad numbers of arguments"));
