@@ -8,6 +8,14 @@ HEADER = philo_one.h
 
 PHILO_ONE = main error parse tools
 
+ifeq ($(SANITIZE), 1)
+	CFLAGS += -fsanitize=address
+endif
+
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g3
+endif
+
 SRC = $(addsuffix .c, $(addprefix srcs/, $(PHILO_ONE)))
 
 OBJ = $(SRC:c=o)
