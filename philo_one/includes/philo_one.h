@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/02/25 15:38:01 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:55:03 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ typedef struct timeval	t_timeval;
 int					ft_atoi(const char *str);
 int					print_error(const char *error_msg);
 int					get_philo_infos(int ac, char **av, t_args *args);
+t_philo				*init_link(int id);
+t_philo				*init_philos(t_args args);
 
 #endif

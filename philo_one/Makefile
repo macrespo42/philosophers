@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror -I includes/
 
 HEADER = philo_one.h
 
-PHILO_ONE = main error parse tools
+PHILO_ONE = main error parse tools philos
 
 ifeq ($(SANITIZE), 1)
 	CFLAGS += -fsanitize=address
