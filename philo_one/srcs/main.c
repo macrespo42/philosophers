@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/01 15:35:02 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/01 16:15:54 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ void	*live(void *p_data)
 	t_philo *philo;
 
 	philo = (t_philo*)p_data;
-	printf("I'm the thread nb : %d\n", philo->id);
-	pthread_mutex_lock(&philo->fork);
-	philo->state = EATING;
-	pthread_mutex_unlock(&philo->fork);
-	philo->state = SLEEPING;
-	usleep(10);
-	philo->state = THINKING;
+	while (1)
+	{
+		pthread_mutex_lock(&philo->fork);
+		printf("%d has taken a fork\n", philo->id);
+		pthread_mutex_lock(&philo->next->fork);
+		printf("%d has taken a second fork\n");
+		philo->state = EATING;
+		printf("%d is eating\n", philo->id);
+		usleep(200 * 1000);
+		pthread_mutex_unlock(&philo->next->fork);
+		pthread_mutex_unlock(&philo->fork);
+		philo->state = SLEEPING;
+		printf("%d is sleeping\n", philo->id);
+		usleep(200 * 1000);
+		philo->state = THINKING;
+		printf("%d is thinking\n", philo->id);
+	}
 	return (philo);
 }
 
@@ -62,6 +72,8 @@ int		main(int ac, char **av)
 		while (i < args.philos_nb)
 		{
 			pthread_mutex_init(&philos->fork, NULL);
+			if (philos->id % 2 != 0)
+				usleep(50 * 1000);
 			pthread_create(&philos->philo_pid, NULL, live, philos);
 			philos = philos->next;
 			i++;
