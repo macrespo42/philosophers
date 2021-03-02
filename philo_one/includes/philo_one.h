@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/02/26 14:13:18 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:11:22 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,7 @@ t_philo				*init_link(int id);
 t_philo				*init_philos(t_args args);
 void				free_philos(t_philo *head, t_args args);
 void 				ft_memdel(void *ptr);
+void				join_philos(t_philo *philo, t_args args);
+void				*live(void *p_data);
 
 #endif
