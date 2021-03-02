@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 14:13:02 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:49:56 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ int			ft_atoi(const char *str)
 		i++;
 	}
 	return (res * neg);
+}
+
+void		manage_state(char *action, useconds_t action_delay, int philo_id)
+{
+	printf("%d %s\n", philo_id, action);
+	if (action_delay > 0)
+		usleep(action_delay * 1000);
 }
 
 void		ft_memdel(void *ptr)

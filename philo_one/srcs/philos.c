@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 14:13:59 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:48:57 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,19 +74,18 @@ void		*live(void *p_data)
 	while (1)
 	{
 		pthread_mutex_lock(&philo->fork);
-		printf("%d has taken a fork\n", philo->id);
+		manage_state("has taken a fork", HC_TIME, philo->id);
 		pthread_mutex_lock(&philo->next->fork);
-		printf("%d has taken a second fork\n", philo->id);
+		manage_state("has taken a fork", HC_TIME, philo->id);
 		philo->state = EATING;
-		printf("%d is eating\n", philo->id);
-		usleep(200 * 1000);
+		manage_state("is eating", HC_TIME, philo->id);
 		pthread_mutex_unlock(&philo->next->fork);
 		pthread_mutex_unlock(&philo->fork);
 		philo->state = SLEEPING;
-		printf("%d is sleeping\n", philo->id);
+		manage_state("is sleeping", HC_TIME, philo->id);
 		usleep(200 * 1000);
 		philo->state = THINKING;
-		printf("%d is thinking\n", philo->id);
+		manage_state("is thinking", HC_TIME, philo->id);
 	}
 	return (philo);
 }
