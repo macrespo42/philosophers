@@ -6,18 +6,35 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 14:15:00 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 14:37:25 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-int		main(int ac, char **av)
+static void		init_routine(t_args *args, t_philo *head)
+{
+	int		i;
+	t_philo	*philo;
+
+	i = 0;
+	philo = head;
+	while (i < args->philos_nb)
+	{
+		pthread_mutex_init(&philo->fork, NULL);
+		if (philo->id % 2 != 0)
+			usleep(50 * 1000);
+		pthread_create(&philo->philo_pid, NULL, live, philo);
+		philo = philo->next;
+		i++;
+	}
+}
+
+int				main(int ac, char **av)
 {
 	t_args		args;
 	t_timeval	current_time;
 	t_philo		*head;
-	t_philo		*philos;
 
 	if (ac >= 5 && ac < 7)
 	{
@@ -25,19 +42,7 @@ int		main(int ac, char **av)
 			return (print_error("Error: bad arguments"));
 		gettimeofday(&current_time, NULL);
 		head = init_philos(args);
-		int i;
-		
-		i = 0;
-		philos = head;
-		while (i < args.philos_nb)
-		{
-			pthread_mutex_init(&philos->fork, NULL);
-			if (philos->id % 2 != 0)
-				usleep(50 * 1000);
-			pthread_create(&philos->philo_pid, NULL, live, philos);
-			philos = philos->next;
-			i++;
-		}
+		init_routine(&args, head);
 		join_philos(head, args);
 		free_philos(head, args);
 	}
