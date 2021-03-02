@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 15:00:43 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:14:03 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define EXIT_FAILURE 1
 # define FALSE 0
 # define TRUE 1
-# define HC_TIME 500
 
 enum				e_state
 {

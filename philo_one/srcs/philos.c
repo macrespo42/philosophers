@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 14:48:57 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:13:28 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,26 @@ t_philo		*init_philos(t_args args)
 
 void		*live(void *p_data)
 {
+	t_args *data;
 	t_philo *philo;
 
-	philo = (t_philo*)p_data;
+	data = (t_args*)p_data;
+	philo = (t_philo*)data->philo;
 	while (1)
 	{
 		pthread_mutex_lock(&philo->fork);
-		manage_state("has taken a fork", HC_TIME, philo->id);
+		manage_state("has taken a fork", 0, philo->id);
 		pthread_mutex_lock(&philo->next->fork);
-		manage_state("has taken a fork", HC_TIME, philo->id);
+		manage_state("has taken a fork", 0, philo->id);
 		philo->state = EATING;
-		manage_state("is eating", HC_TIME, philo->id);
+		manage_state("is eating", data->time_to_eat, philo->id);
 		pthread_mutex_unlock(&philo->next->fork);
 		pthread_mutex_unlock(&philo->fork);
 		philo->state = SLEEPING;
-		manage_state("is sleeping", HC_TIME, philo->id);
+		manage_state("is sleeping", data->time_to_sleep, philo->id);
 		usleep(200 * 1000);
 		philo->state = THINKING;
-		manage_state("is thinking", HC_TIME, philo->id);
+		manage_state("is thinking", 0, philo->id);
 	}
 	return (philo);
 }

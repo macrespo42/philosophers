@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 15:01:04 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:41:06 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void		init_routine(t_args *args, t_philo *head)
 	{
 		pthread_mutex_init(&args->philo->fork, NULL);
 		if (args->philo->id % 2 != 0)
-			usleep(50 * 1000);
-		pthread_create(&args->philo->philo_pid, NULL, live, args->philo);
+			usleep((args->time_to_eat * 0.9) * 1000);
+		pthread_create(&args->philo->philo_pid, NULL, live, args);
 		args->philo = args->philo->next;
 		i++;
 	}
