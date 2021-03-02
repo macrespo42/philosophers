@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 15:13:28 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/02 15:57:48 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		free_philos(t_philo *head, t_args args)
 	{
 		tmp = head;
 		head = head->next;
+		pthread_mutex_destroy(&tmp->fork);
 		ft_memdel(tmp);
 		i++;
 	}
