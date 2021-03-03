@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 10:40:35 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:27:17 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,12 @@ void		ft_memdel(void *ptr)
 {
 	free(ptr);
 	ptr = NULL;
+}
+
+long		get_tv_sec(void)
+{
+	t_timeval timestamp;
+
+	gettimeofday(&timestamp, NULL);
+	return ((timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000));
 }
