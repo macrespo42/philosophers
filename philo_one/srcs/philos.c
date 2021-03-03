@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 10:36:37 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:08:52 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,13 @@ t_philo		*init_philos(t_args args)
 
 void		*live(void *p_data)
 {
-	t_args	*data;
-	t_philo	*philo;
+	t_args		*data;
+	t_philo		*philo;
+	t_timeval	current_time;
 
 	data = (t_args*)p_data;
 	philo = (t_philo*)data->philo;
-	while (1)
+	while (data->all_alive)
 	{
 		pthread_mutex_lock(&philo->fork);
 		manage_state("has taken a fork", 0, philo->id);
@@ -86,9 +87,17 @@ void		*live(void *p_data)
 		pthread_mutex_unlock(&philo->fork);
 		philo->state = SLEEPING;
 		manage_state("is sleeping", data->time_to_sleep, philo->id);
-		usleep(200 * 1000);
 		philo->state = THINKING;
 		manage_state("is thinking", 0, philo->id);
+		gettimeofday(&current_time, NULL);
+		if ((current_time.tv_sec - data->initial_time.tv_sec) * 1000 > data->time_to_die)
+		{
+			printf("current : %ld\n", (current_time.tv_sec));
+			printf("TIME TO DIE IN SEC : %d\n", data->time_to_die);
+			printf("%d is dead\n", philo->id);
+			data->all_alive = 0;
+		}
+		gettimeofday(&data->initial_time, NULL);
 	}
 	return (philo);
 }

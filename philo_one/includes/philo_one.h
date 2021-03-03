@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 10:35:55 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 13:19:54 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ enum				e_state
 	THINKING
 };
 
+typedef struct timeval	t_timeval;
+
 typedef struct		s_philo {
 	pthread_t		philo_pid;
 	pthread_mutex_t	fork;
@@ -48,10 +50,10 @@ typedef struct		s_args {
 	int				time_to_sleep;
 	int				time_must_eat;
 	int				must_eat_defined;
+	int				all_alive;
+	t_timeval		initial_time;
 	t_philo			*philo;
 }					t_args;
-
-typedef struct timeval	t_timeval;
 
 int					ft_atoi(const char *str);
 int					print_error(const char *error_msg);
