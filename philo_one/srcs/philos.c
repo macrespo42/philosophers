@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 15:08:52 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:30:41 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void		*live(void *p_data)
 {
 	t_args		*data;
 	t_philo		*philo;
-	t_timeval	current_time;
+	long		current_time;
 
 	data = (t_args*)p_data;
 	philo = (t_philo*)data->philo;
@@ -89,15 +89,15 @@ void		*live(void *p_data)
 		manage_state("is sleeping", data->time_to_sleep, philo->id);
 		philo->state = THINKING;
 		manage_state("is thinking", 0, philo->id);
-		gettimeofday(&current_time, NULL);
-		if ((current_time.tv_sec - data->initial_time.tv_sec) * 1000 > data->time_to_die)
+		current_time = get_tv_msec();
+		if ((current_time - data->initial_time) * 1000 > data->time_to_die)
 		{
-			printf("current : %ld\n", (current_time.tv_sec));
+			printf("current : %ld\n", (current_time));
 			printf("TIME TO DIE IN SEC : %d\n", data->time_to_die);
 			printf("%d is dead\n", philo->id);
 			data->all_alive = 0;
 		}
-		gettimeofday(&data->initial_time, NULL);
+		data->initial_time = get_tv_msec();
 	}
 	return (philo);
 }

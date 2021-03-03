@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 14:40:15 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:30:55 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				main(int ac, char **av)
 		if (get_philo_infos(ac, av, &args) == 1)
 			return (print_error("Error: bad arguments"));
 		head = init_philos(args);
-		gettimeofday(&args.initial_time, NULL);
+		args.initial_time = get_tv_msec();
 		init_routine(&args, head);
 		join_philos(head, args);
 		free_philos(head, args);

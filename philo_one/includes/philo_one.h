@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 15:27:45 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 15:30:04 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ typedef struct		s_args {
 	int				time_must_eat;
 	int				must_eat_defined;
 	int				all_alive;
-	t_timeval		initial_time;
+	long			initial_time;
 	t_philo			*philo;
 }					t_args;
 
 int					ft_atoi(const char *str);
 int					print_error(const char *error_msg);
 int					get_philo_infos(int ac, char **av, t_args *args);
-long				get_tv_sec(void);
+long				get_tv_msec(void);
 t_philo				*init_link(int id);
 t_philo				*init_philos(t_args args);
 void				free_philos(t_philo *head, t_args args);
