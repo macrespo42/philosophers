@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 15:57:48 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 10:36:37 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ t_philo		*init_philos(t_args args)
 
 void		*live(void *p_data)
 {
-	t_args *data;
-	t_philo *philo;
+	t_args	*data;
+	t_philo	*philo;
 
 	data = (t_args*)p_data;
 	philo = (t_philo*)data->philo;

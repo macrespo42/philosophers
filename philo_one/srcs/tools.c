@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/02 14:49:56 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/03 10:36:08 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			ft_atoi(const char *str)
 	return (res * neg);
 }
 
-void		manage_state(char *action, useconds_t action_delay, int philo_id)
+void		manage_state(char *action, useconds_t delay, int philo_id)
 {
 	printf("%d %s\n", philo_id, action);
 	if (action_delay > 0)
