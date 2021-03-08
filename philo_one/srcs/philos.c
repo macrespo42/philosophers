@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 09:20:30 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 14:22:13 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		free_philos(t_philo *head, t_args args)
 	t_philo	*tmp;
 
 	i = 0;
-	while (i < args.philos_nb)
+	while (i < args.philos_nb - 1)
 	{
 		tmp = head;
 		head = head->next;
@@ -50,19 +50,20 @@ t_philo		*init_philos(t_args args)
 	t_philo	*head;
 	int		i;
 
-	philo = init_link(0);
+	philo = init_link(1);
 	if (!philo)
 		return (NULL);
 	head = philo;
 	i = 1;
-	while (i <= args.philos_nb)
+	while (i <= args.philos_nb - 1)
 	{
+		i++;
 		new_philo = init_link(i);
 		if (!new_philo)
 			return (NULL);
 		philo->next = new_philo;
 		philo = new_philo;
-		i++;
 	}
+	philo->next = head;
 	return (head);
 }

@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 12:09:55 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 14:03:53 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,13 @@ void			*supervisor(void *p_data)
 	t_args *args;
 
 	args = (t_args*)p_data;
-	while (args->philo->next != NULL && args->philo->alive)
+	t_philo *tmp = args->philo;
+	while (tmp->next != NULL && tmp->alive)
 	{
-		if (args->philo->alive == 0)
-			printf("%d is dead\n", args->philo->id);
+		if (tmp->alive == 0)
+			printf("%d is dead\n", tmp->id);
+		printf("PHILO ID : %d is checked\n", tmp->id);
+		tmp = tmp->next;
 	}
 	return args;
 }
@@ -54,8 +57,6 @@ int				main(int ac, char **av)
 		if (get_philo_infos(ac, av, &args) == 1)
 			return (print_error("Error: bad arguments"));
 		head = init_philos(args);
-		args.initial_time = get_tv_msec();
-		args.philo = head;
 		pthread_create(&supervisor_t, NULL, supervisor, &args);
 		init_routine(&args, head);
 		pthread_join(supervisor_t, NULL);
