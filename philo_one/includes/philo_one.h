@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 09:20:21 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 15:24:09 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
-# define FALSE 0
-# define TRUE 1
 
 enum				e_state
 {
@@ -39,6 +37,7 @@ typedef struct		s_philo {
 	pthread_mutex_t	fork;
 	int				id;
 	int				alive;
+	long			last_meal;
 	enum e_state	state;
 	struct s_philo	*next;
 }					t_philo;
@@ -49,7 +48,6 @@ typedef struct		s_args {
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	int				must_eat_defined;
 	int				all_alive;
 	long			initial_time;
 	t_philo			*philo;
@@ -63,7 +61,7 @@ t_philo				*init_link(int id);
 t_philo				*init_philos(t_args args);
 void				free_philos(t_philo *head, t_args args);
 void				ft_memdel(void *ptr);
-void				*live(void *p_data);
+void				*routine(void *p_data);
 void				manage_state(char *action, useconds_t delay, int philo_id);
 
 #endif
