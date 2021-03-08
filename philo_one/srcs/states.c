@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 09:53:24 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 11:40:45 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,23 @@ void		*live(void *p_data)
     current_time = 0;
 	data = (t_args*)p_data;
 	philo = (t_philo*)data->philo;
-	while (philo->alive)
-	{
-        if (philo->state == EATING)
-            eat(data, philo, current_time);
-        if (philo->state == SLEEPING)
-        {
+	while (1) {
+    	if (philo->state == EATING)
+    	    eat(data, philo, current_time);
+    	if (philo->state == SLEEPING)
+    	{
 		    philo->state = SLEEPING;
 		    manage_state("is sleeping", data->time_to_sleep, philo->id);
-            check_vital(current_time, philo, data);
-            philo->state = THINKING;
-        }
-        if (philo->state == THINKING)
-        {
-            philo->state = THINKING;
+    	    check_vital(current_time, philo, data);
+    	    philo->state = THINKING;
+    	}
+    	if (philo->state == THINKING)
+    	{
+    	    philo->state = THINKING;
 		    manage_state("is thinking", 0, philo->id);
-            check_vital(current_time, philo, data);
-            philo->state = EATING;
-        }
+    	    check_vital(current_time, philo, data);
+    	    philo->state = EATING;
+    	}
 	}
 	return (philo);
 }

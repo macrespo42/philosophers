@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 10:14:02 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 12:09:55 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void		init_routine(t_args *args, t_philo *head)
 		if (args->philo->id % 2 == 1)
 			usleep(args->time_to_eat / 10);
 		pthread_create(&args->philo->philo_pid, NULL, live, args);
+		pthread_detach(args->philo->philo_pid);
 		args->philo = args->philo->next;
 		i++;
 	}
