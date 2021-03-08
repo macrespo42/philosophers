@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 15:52:10 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 09:53:24 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void        check_vital(long current_time, t_philo *philo, t_args *data)
 			printf("current - initial : %ld\n", (current_time - data->initial_time));
 			printf("TIME TO DIE IN SEC : %d\n", data->time_to_die);
 			printf("%d is dead\n", philo->id);
-            philo->alive = FALSE;
+            philo->alive = 0;
 	}
     data->initial_time = get_tv_msec();
 }

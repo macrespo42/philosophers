@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/03 15:50:46 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/08 09:20:30 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,4 @@ t_philo		*init_philos(t_args args)
 		i++;
 	}
 	return (head);
-}
-
-void		join_philos(t_philo *philo, t_args args)
-{
-	int		i;
-	t_philo *tmp;
-
-	tmp = philo;
-	i = 0;
-	while (i < args.philos_nb)
-	{
-		pthread_join(tmp->philo_pid, NULL);
-		tmp = tmp->next;
-		i++;
-	}
 }
