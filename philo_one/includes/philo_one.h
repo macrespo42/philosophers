@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 15:24:09 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/09 13:25:20 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ typedef struct		s_args {
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_must_eat;
-	int				all_alive;
 	long			initial_time;
+	pthread_mutex_t	printer;
 	t_philo			*philo;
 }					t_args;
 
@@ -62,6 +62,6 @@ t_philo				*init_philos(t_args args);
 void				free_philos(t_philo *head, t_args args);
 void				ft_memdel(void *ptr);
 void				*routine(void *p_data);
-void				manage_state(char *action, useconds_t delay, int philo_id);
+void				manage_state(char *action, useconds_t delay, t_args *data);
 
 #endif

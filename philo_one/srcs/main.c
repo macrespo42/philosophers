@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/08 14:41:35 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:21:26 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ static void		init_routine(t_args *args, t_philo *head)
 	args->philo = head;
 	while (i < args->philos_nb)
 	{
-		pthread_mutex_init(&args->philo->fork, NULL);
-		if (args->philo->id % 2 == 1)
-			usleep(args->time_to_eat / 10);
+		if (args->philo->id % 2 == 2)
+			usleep((args->time_to_eat * 1000) / 10);
 		pthread_create(&args->philo->philo_pid, NULL, routine, args);
 		pthread_detach(args->philo->philo_pid);
 		args->philo = args->philo->next;
@@ -39,7 +38,7 @@ void			*supervisor(void *p_data)
 	while (tmp->next != NULL && tmp->alive)
 	{
 		if (tmp->alive == 0)
-			printf("%d is dead\n", tmp->id);
+			printf("jnfief");
 		tmp = tmp->next;
 	}
 	return args;
