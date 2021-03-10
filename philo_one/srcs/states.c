@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/09 14:57:08 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/10 12:58:52 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		manage_state(char *action, useconds_t delay, t_philo *philo)
 {
-	long	timestamp;
+	// long	timestamp;
 
 	// pthread_mutex_lock(&data->printer);
 	// timestamp = data->philo->last_meal - data->initial_time;
@@ -43,12 +43,11 @@ void		*routine(void *p_data)
 
 	philo = (t_philo*)p_data;
 	printf("LAUNCH ROUTINE FOR THREAD : %d\n", philo->id);
-	// philo->pack->initial_time = get_tv_msec();
 	while (philo->alive) {
 		// eat(data);
-		manage_state("is eating", philo->pack_>time_to_eat, data);
-		manage_state("is sleeping", philo->pack_>time_to_sleep, data);
-		manage_state("is thinking", 0, data);
+		manage_state("is eating", philo->args->time_to_eat, philo);
+		manage_state("is sleeping", philo->args->time_to_sleep, philo);
+		manage_state("is thinking", 0, philo);
 	}
 	return (philo);
 }
