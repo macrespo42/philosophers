@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/10 12:57:47 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/10 13:06:40 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,35 @@ static void		init_routine(t_args *args, t_philo *head)
 	}
 }
 
-// void			*supervisor(void *p_data)
-// {
-// 	t_args *args;
+void			*supervisor(void *p_data)
+{
+	t_philo *tmp;
 
-// 	args = (t_args*)p_data;
-// 	t_philo *tmp = args->head;
-// 	while (tmp->next != NULL && tmp->alive)
-// 	{
-// 		if (tmp->alive == 0)
-// 			printf("%d IS DEAD\n", tmp->id);
-// 		tmp = tmp->next;
-// 	}
-// 	return args;
-// }
+	tmp = (t_philo*)p_data;
+	while (tmp->next != NULL && tmp->alive)
+	{
+		if (tmp->alive == 0)
+			manage_state("is dead", 0, tmp);
+		tmp = tmp->next;
+	}
+	return tmp;
+}
 
 int				main(int ac, char **av)
 {
 	t_philo		*head;
 	t_args		args;
+	pthread_t	supervisor_pid;
 
+	supervisor_pid = NULL;
 	if (ac >= 5 && ac < 7)
 	{
 		if (get_philo_infos(ac, av, &args) == 1)
 			return (print_error("Error: bad arguments"));
 		head = init_philos(&args);
-		// pthread_create(&params.supervisor_pid, NULL, supervisor, &params.args);
+		pthread_create(&supervisor_pid, NULL, supervisor, head);
 		init_routine(&args, head);
-		// pthread_join(params.supervisor_pid, NULL);
+		pthread_join(supervisor_pid, NULL);
 		free_philos(head, args);
 	}
 	else
