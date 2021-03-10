@@ -6,22 +6,22 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/09 14:23:49 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/09 14:57:08 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void		manage_state(char *action, useconds_t delay, t_args *data)
+void		manage_state(char *action, useconds_t delay, t_philo *philo)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(&data->printer);
-	timestamp = data->philo->last_meal - data->initial_time;
-	printf("%ld %d %s\n", timestamp, data->philo->id, action);
+	// pthread_mutex_lock(&data->printer);
+	// timestamp = data->philo->last_meal - data->initial_time;
+	printf("%d %s\n", philo->id, action);
 	if (delay > 0)
 		usleep(delay * 1000);
-	pthread_mutex_unlock(&data->printer);
+	// pthread_mutex_unlock(&data->printer);
 }
 
 // void		eat(t_args *data)
@@ -39,20 +39,16 @@ void		manage_state(char *action, useconds_t delay, t_args *data)
 
 void		*routine(void *p_data)
 {
-	t_args		*data;
+	t_philo		*philo;
 
-	data = (t_args*)p_data;
-	printf("LAUNCH ROUTINE FOR THREAD : %d\n", data->philo->id);
-	data->initial_time = get_tv_msec();
-	data->philo->last_meal = data->initial_time;
-	while (data->philo->alive) {
+	philo = (t_philo*)p_data;
+	printf("LAUNCH ROUTINE FOR THREAD : %d\n", philo->id);
+	// philo->pack->initial_time = get_tv_msec();
+	while (philo->alive) {
 		// eat(data);
-		manage_state("is eating", data->time_to_eat, data);
-		data->philo->last_meal = get_tv_msec();
-		manage_state("is sleeping", data->time_to_sleep, data);
-		data->philo->last_meal = get_tv_msec();
+		manage_state("is eating", philo->pack_>time_to_eat, data);
+		manage_state("is sleeping", philo->pack_>time_to_sleep, data);
 		manage_state("is thinking", 0, data);
-		data->philo->last_meal = get_tv_msec();
 	}
-	return (data->philo);
+	return (philo);
 }

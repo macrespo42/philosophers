@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/09 10:49:15 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/10 10:58:37 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		free_philos(t_philo *head, t_args args)
 	ft_memdel(head);
 }
 
-t_philo		*init_link(int id)
+t_philo		*init_link(int id, t_args *arg)
 {
 	t_philo *link;
 
@@ -39,27 +39,28 @@ t_philo		*init_link(int id)
 	link->id = id;
 	link->alive = 1;
 	link->state = THINKING;
+	link->args = arg;
 	link->next = link;
 	pthread_mutex_init(&link->fork, NULL);
 	return (link);
 }
 
-t_philo		*init_philos(t_args args)
+t_philo		*init_philos(t_args *args)
 {
 	t_philo	*philo;
 	t_philo *new_philo;
 	t_philo	*head;
 	int		i;
 
-	philo = init_link(1);
+	philo = init_link(1, args);
 	if (!philo)
 		return (NULL);
 	head = philo;
 	i = 1;
-	while (i <= args.philos_nb - 1)
+	while (i <= args->philos_nb - 1)
 	{
 		i++;
-		new_philo = init_link(i);
+		new_philo = init_link(i, args);
 		if (!new_philo)
 			return (NULL);
 		philo->next = new_philo;
