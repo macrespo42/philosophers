@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/10 14:54:08 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:21:18 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,9 @@ static void		init_routine(t_args *args, t_philo *head)
 
 	i = 0;
 	args->initial_time = get_tv_msec();
-	printf("INITIAL TIME : %ld", args->initial_time);
 	philo = head;
 	while (i < args->philos_nb)
 	{
-		if (philo->id % 2 == 1)
-			usleep((args->time_to_eat * 1000) / 10);
 		pthread_create(&philo->philo_pid, NULL, routine, philo);
 		pthread_detach(philo->philo_pid);
 		philo = philo->next;
