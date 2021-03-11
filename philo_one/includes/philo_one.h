@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/11 11:42:20 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/11 13:52:56 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct		s_philo {
 	struct s_philo	*next;
 }					t_philo;
 
-t_philo			*head;
 int					ft_atoi(const char *str);
 int					print_error(const char *error_msg);
 int					get_philo_infos(int ac, char **av, t_args *args);
