@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/10 15:22:30 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:56:20 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@ void		manage_state(char *action, useconds_t delay, t_philo *philo)
 	printf("[%ld] %d %s\n",timestamp, philo->id, action);
 	if (delay > 0)
 		usleep(delay * 1000);
+	philo->last_meal = get_tv_msec();
 }
 
 void		eat(t_philo *philo)
 {
+	philo->first_meal = 1;
 	pthread_mutex_lock(&philo->fork);
 	manage_state("has taken a fork", 0, philo);
 	pthread_mutex_lock(&philo->next->fork);

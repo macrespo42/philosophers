@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/10 10:58:14 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:42:20 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ enum				e_state
 {
 	EATING,
 	SLEEPING,
-	THINKING
+	THINKING,
+	DEAD
 };
 
 typedef struct timeval	t_timeval;
@@ -47,6 +48,7 @@ typedef struct		s_philo {
 	pthread_mutex_t	fork;
 	int				id;
 	int				alive;
+	int				first_meal;
 	long			last_meal;
 	enum e_state	state;
 	t_args			*args;

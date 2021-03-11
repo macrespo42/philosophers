@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/10 15:21:18 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/11 11:42:04 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,19 @@ static void		init_routine(t_args *args, t_philo *head)
 
 void			*supervisor(void *p_data)
 {
-	t_philo *tmp;
+	t_philo 	*tmp;
+	long		now;
 
 	tmp = (t_philo*)p_data;
 	while (tmp->next != NULL && tmp->alive)
 	{
-		if (tmp->alive == 0)
+		now = get_tv_msec();
+		if (tmp->first_meal != 0 && ((now - tmp->last_meal) > tmp->args->time_to_die))
+		{
+			tmp->alive = 0;
+			tmp->state = DEAD;
 			manage_state("is dead", 0, tmp);
+		}
 		tmp = tmp->next;
 	}
 	return tmp;
