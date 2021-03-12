@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/11 13:56:37 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/11 15:22:48 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void		manage_state(char *action, useconds_t delay, t_philo *philo)
 	printf("[%ld] %d %s\n",timestamp, philo->id, action);
 	if (delay > 0)
 		usleep(delay * 1000);
-	if (philo->state == SLEEPING || philo->state == THINKING)
-		philo->last_meal = get_tv_msec();
 }
 
 void		eat(t_philo *philo)
@@ -44,7 +42,7 @@ void		*routine(void *p_data)
 	t_philo		*philo;
 
 	philo = (t_philo*)p_data;
-	if (philo->id % 2 == 1)
+	if (philo->id % 2 == 0)
 			usleep(philo->args->time_to_eat * 1000);
 	philo->last_meal = philo->args->initial_time;
 	while (philo->alive) {
