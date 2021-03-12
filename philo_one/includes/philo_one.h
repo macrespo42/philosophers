@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/11 13:52:56 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/12 11:46:00 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ t_philo				*init_philos(t_args *args);
 void				free_philos(t_philo *head, t_args args);
 void				ft_memdel(void *ptr);
 void				*routine(void *p_data);
-void				manage_state(char *action, useconds_t delay, t_philo *philo);
+void				print_state(char *action, useconds_t delay, t_philo *philo);
 
 #endif
