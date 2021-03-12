@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 15:00:28 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:20:58 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ void			*supervisor(void *p_data)
 	while (tmp->next != NULL && tmp->alive)
 	{
 		now = get_tv_msec();
-		if (tmp->first_meal != 0 &&
-		((now - tmp->last_meal) > tmp->args->time_to_die))
+		if ((tmp->first_meal != 0 && (now - tmp->last_meal > tmp->args->time_to_die)) || (tmp->args->time_must_eat != -1 && (tmp->eat_times >= tmp->args->time_must_eat)))
 		{
 			tmp->alive = 0;
 			tmp->state = DEAD;

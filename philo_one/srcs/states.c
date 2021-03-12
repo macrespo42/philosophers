@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 15:00:10 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:16:35 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->next->fork);
 	pthread_mutex_unlock(&philo->fork);
 	philo->last_meal = get_tv_msec();
+	philo->eat_times += 1;
 	philo->state = SLEEPING;
 }
 
@@ -44,6 +45,7 @@ void		*routine(void *p_data)
 	philo = (t_philo*)p_data;
 	if (philo->id % 2 == 0)
 		usleep(philo->args->time_to_eat * 1000);
+	philo->eat_times = 0;
 	philo->last_meal = philo->args->initial_time;
 	while (philo->alive)
 	{
