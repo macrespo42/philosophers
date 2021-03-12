@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 13:39:43 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:00:28 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void			*supervisor(void *p_data)
 	long		now;
 
 	tmp = (t_philo*)p_data;
-	tmp->args->death_counter = 0;
 	while (tmp->next != NULL && tmp->alive)
 	{
 		now = get_tv_msec();

@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 13:38:05 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/12 15:00:23 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct		s_args {
 	int				time_to_sleep;
 	int				time_must_eat;
 	long			initial_time;
-	int				death_counter;
 	pthread_mutex_t	printer;
 }					t_args;
 
