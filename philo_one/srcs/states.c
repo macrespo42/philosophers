@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/13 10:12:54 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:57:12 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@ void		print_state(char *action, useconds_t delay, t_philo *philo)
 {
 	long	timestamp;
 
+	pthread_mutex_lock(philo->args->printer);
 	timestamp = get_tv_msec() - philo->args->initial_time;
-	printf("[%ld] %d %s\n", timestamp, philo->id, action);
+	if (!philo->args->death_flag)
+		printf("[%ld] %d %s\n", timestamp, philo->id, action);
+	if (philo->state == DEAD)
+		philo->args->death_flag = 1;
+	pthread_mutex_unlock(philo->args->printer);
 	if (delay > 0)
 		usleep(delay * 1000);
 }
@@ -55,6 +60,5 @@ void		*routine(void *p_data)
 		philo->state = THINKING;
 		print_state("is thinking", 0, philo);
 	}
-	printf("Philo %d has eaten %d times\n", philo->id, philo->eat_times);
 	return (philo);
 }

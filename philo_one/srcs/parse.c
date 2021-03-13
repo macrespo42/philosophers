@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:47:52 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 13:42:48 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:37:25 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int	get_philo_infos(int ac, char **av, t_args *args)
 	args->time_to_eat = ft_atoi(av[3]);
 	args->time_to_sleep = ft_atoi(av[4]);
 	args->time_must_eat = 1;
-	pthread_mutex_init(&args->printer, NULL);
+	args->death_flag = 0;
+	args->printer = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(args->printer, NULL);
 	if (ac == 6)
 		args->time_must_eat = ft_atoi(av[5]);
 	if (args->philos_nb <= 1 || args->time_to_die < 0 ||
