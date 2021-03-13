@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 13:40:05 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/13 09:38:45 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_philo		*init_link(int id, t_args *arg)
 	link->state = THINKING;
 	link->args = arg;
 	link->first_meal = 0;
+	link->eat_times = 0;
 	link->next = link;
 	pthread_mutex_init(&link->fork, NULL);
 	return (link);
