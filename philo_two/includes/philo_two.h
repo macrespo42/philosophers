@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/15 13:44:50 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/15 14:07:09 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
+# define SEM_NAME "forks"
 
 enum				e_state
 {
@@ -44,12 +45,12 @@ typedef struct		s_args {
 	int				time_must_eat;
 	int				death_flag;
 	long			initial_time;
+	sem_t			*forks;
 	pthread_mutex_t	*printer;
 }					t_args;
 
 typedef struct		s_philo {
 	pthread_t		philo_pid;
-	pthread_mutex_t	fork;
 	int				id;
 	int				alive;
 	int				eat_times;

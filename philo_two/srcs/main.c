@@ -6,11 +6,23 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/15 13:40:41 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/15 14:50:43 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_two.h"
+
+static void		init_forks(t_args *args)
+{
+	int		i;
+	
+	i = 0;
+	while (i < args->philos_nb)
+	{
+		sem_post(args->forks);
+		i++;
+	}
+}
 
 static void		init_routine(t_args *args, t_philo *head)
 {
@@ -20,6 +32,7 @@ static void		init_routine(t_args *args, t_philo *head)
 	i = 0;
 	args->initial_time = get_tv_msec();
 	philo = head;
+	init_forks(args);
 	while (i < args->philos_nb)
 	{
 		pthread_create(&philo->philo_pid, NULL, routine, philo);
