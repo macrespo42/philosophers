@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/13 11:57:12 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/15 09:35:38 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		print_state(char *action, useconds_t delay, t_philo *philo)
 		philo->args->death_flag = 1;
 	pthread_mutex_unlock(philo->args->printer);
 	if (delay > 0)
-		usleep(delay * 1000);
+		ft_msleep(delay);
 }
 
 void		eat(t_philo *philo)
@@ -48,7 +48,7 @@ void		*routine(void *p_data)
 
 	philo = (t_philo*)p_data;
 	if (philo->id % 2 == 0)
-		usleep(philo->args->time_to_eat * 1000);
+		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = philo->args->initial_time;
 	while (philo->alive && (philo->args->time_must_eat == -1
 	|| (philo->args->time_must_eat != -1

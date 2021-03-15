@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:49:07 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/12 11:43:31 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:41:53 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,13 @@ long		get_tv_msec(void)
 
 	gettimeofday(&timestamp, NULL);
 	return ((timestamp.tv_sec * 1000) + (timestamp.tv_usec / 1000));
+}
+
+void		ft_msleep(int milliseconds)
+{
+	long	time;
+
+	time = get_tv_msec();
+	while (get_tv_msec() < time + milliseconds)
+		usleep(milliseconds);
 }
