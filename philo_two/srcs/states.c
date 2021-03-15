@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/15 14:49:13 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/15 14:59:37 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void		print_state(char *action, useconds_t delay, t_philo *philo)
 {
 	long	timestamp;
 
-	pthread_mutex_lock(philo->args->printer);
+	sem_wait(philo->args->printer);
 	timestamp = get_tv_msec() - philo->args->initial_time;
 	if (!philo->args->death_flag)
 		printf("[%ld] %d %s\n", timestamp, philo->id, action);
 	if (philo->state == DEAD)
 		philo->args->death_flag = 1;
-	pthread_mutex_unlock(philo->args->printer);
+	sem_post(philo->args->printer);
 	if (delay > 0)
 		ft_msleep(delay);
 }
