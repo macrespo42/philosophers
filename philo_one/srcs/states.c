@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:53:27 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/16 14:32:27 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void		eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->next->fork);
 	pthread_mutex_unlock(&philo->fork);
 	philo->state = SLEEPING;
+	if (philo->eat_times == philo->args->time_must_eat)
+		philo->args->total_meal += 1;
+	philo->eat_times += 1;
 }
 
 void		*routine(void *p_data)
@@ -50,12 +53,9 @@ void		*routine(void *p_data)
 	if (philo->id % 2 == 0)
 		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = get_tv_msec();
-	while (philo->alive && (philo->args->time_must_eat == -1
-	|| (philo->args->time_must_eat != -1
-	&& philo->eat_times < philo->args->time_must_eat)))
+	while (philo->alive)
 	{
 		eat(philo);
-		philo->eat_times += 1;
 		print_state("is sleeping", philo->args->time_to_sleep, philo);
 		philo->state = THINKING;
 		print_state("is thinking", 0, philo);

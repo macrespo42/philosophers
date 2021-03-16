@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 10:57:32 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/16 13:06:50 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
-# define SEM_NAME "forks"
+# define SEM_FORKS "forks"
+# define SEM_DEATH "printer"
 
 enum				e_state
 {

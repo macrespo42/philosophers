@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:47:04 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/16 14:35:30 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void			*supervisor(void *p_data)
 			tmp->state = DEAD;
 			print_state("is dead", 0, tmp);
 		}
+		if (tmp->args->total_meal == tmp->args->time_must_eat)
+			return (tmp);
 		tmp = tmp->next;
 	}
 	return (tmp);
