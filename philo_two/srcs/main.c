@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/15 14:50:43 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/16 10:58:08 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		init_forks(t_args *args)
 {
 	int		i;
-	
+
 	i = 0;
 	while (i < args->philos_nb)
 	{
