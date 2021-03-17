@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:06:50 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/17 14:53:55 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct		s_args {
 	int				time_must_eat;
 	int				death_flag;
 	long			initial_time;
+	int				total_meal;
 	sem_t			*forks;
 	sem_t			*printer;
 }					t_args;

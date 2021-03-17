@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 13:21:42 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/17 14:53:12 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ void			*supervisor(void *p_data)
 			tmp->alive = 0;
 			tmp->state = DEAD;
 			print_state("is dead", 0, tmp);
+		}
+		if (tmp->args->total_meal == tmp->args->philos_nb)
+		{
+			tmp->alive = 0;
+			tmp->state = DEAD;
 		}
 		tmp = tmp->next;
 	}
