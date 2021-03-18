@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 11:02:58 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:09:10 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void			*supervisor(void *p_data)
 		{
 			tmp->alive = 0;
 			tmp->state = DEAD;
-			print_state("is dead", 0, tmp);
+			print_state("died", 0, tmp);
 		}
 		tmp = tmp->next;
 	}

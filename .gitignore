@@ -2,5 +2,5 @@
 */.DS_Store
 */*/.DS_Store
 */*/*.o
-./philo_one/philo_one
-philo_one
+./philo_*/philo_*
+socrates
