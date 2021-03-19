@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_three.h                                      :+:      :+:    :+:   */
+/*   philo_three.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/25 15:00:31 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 11:01:52 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/17 14:53:55 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
-# define SEM_NAME "forks"
+# define SEM_FORKS "forks"
+# define SEM_DEATH "printer"
 
 enum				e_state
 {
@@ -45,6 +46,7 @@ typedef struct		s_args {
 	int				time_must_eat;
 	int				death_flag;
 	long			initial_time;
+	int				total_meal;
 	sem_t			*forks;
 	sem_t			*printer;
 }					t_args;

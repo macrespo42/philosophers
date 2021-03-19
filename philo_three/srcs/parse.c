@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:47:52 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 11:02:58 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:21:32 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ int	get_philo_infos(int ac, char **av, t_args *args)
 	args->time_to_die = ft_atoi(av[2]);
 	args->time_to_eat = ft_atoi(av[3]);
 	args->time_to_sleep = ft_atoi(av[4]);
+	args->total_meal = 0;
 	args->time_must_eat = 1;
 	args->death_flag = 0;
-	args->printer = malloc(sizeof(sem_t));
-	args->forks = malloc(sizeof(sem_t));
-	if (!args->printer || !args->forks)
-		return (EXIT_FAILURE);
-	args->forks = sem_open(SEM_NAME, O_CREAT);
-	args->printer = sem_open(SEM_NAME, O_CREAT);
+	args->forks = sem_open(SEM_FORKS, O_CREAT, 755, (unsigned int)args->philos_nb);
+	args->printer = sem_open(SEM_DEATH, O_CREAT, 755, 1);
 	sem_post(args->printer);
 	if (ac == 6)
 		args->time_must_eat = ft_atoi(av[5]);

@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/16 11:02:58 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:21:32 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void		free_philos(t_philo *head, t_args args)
 		ft_memdel(tmp);
 		i++;
 	}
-	sem_close(args.forks);
-	sem_close(args.printer);
+	sem_unlink(SEM_FORKS);
+	sem_unlink(SEM_DEATH);
 	ft_memdel(head);
 }
 
