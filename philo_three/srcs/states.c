@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/19 14:21:32 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/21 13:44:47 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void		*routine(void *p_data)
 	if (philo->id % 2 == 0)
 		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = get_tv_msec();
+	// monitor LAUNCH
 	while (philo->alive)
 	{
 		eat(philo);

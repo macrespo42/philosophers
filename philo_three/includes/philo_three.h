@@ -22,6 +22,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
@@ -71,7 +72,7 @@ t_philo				init_philos(t_args *args);
 void				free_philos(t_philo *head);
 void				ft_memdel(void *ptr);
 void				ft_msleep(int milliseconds);
-void				init_routine(t_args *args, t_philo *head);
+void				init_routine(t_args *args, t_philo *philo);
 void				*routine(void *p_data);
 void				print_state(char *action, useconds_t delay, t_philo *philo);
 
