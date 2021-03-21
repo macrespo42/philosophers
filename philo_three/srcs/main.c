@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/21 14:12:53 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/21 16:42:05 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void		init_routine(t_args *args, t_philo *philo)
 			routine(philo);
 	}
 	waitpid(-1, NULL, 0);
-	// i = 0;
-	// while (i++ < args->philos_nb)
-	// 	kill(pids[i], SIGKILL);
-	// ft_memdel(pids);
+	i = 0;
+	while (i++ < args->philos_nb)
+		kill(pids[i], SIGKILL);
+	ft_memdel(pids);
 }
 
 int				main(int ac, char **av)

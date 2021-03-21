@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/21 13:44:47 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/21 16:44:07 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,15 +45,43 @@ void		eat(t_philo *philo)
 	philo->eat_times += 1;
 }
 
+void			*supervisor(void *p_data)
+{
+	t_philo		*tmp;
+	long		now;
+
+	tmp = (t_philo*)p_data;
+	while (tmp->alive)
+	{
+		now = get_tv_msec();
+		if (tmp->first_meal != 0 &&
+		now - tmp->last_meal > tmp->args->time_to_die)
+		{
+			tmp->alive = 0;
+			tmp->state = DEAD;
+			print_state("died", 0, tmp);
+			exit(0);
+		}
+		if (tmp->args->total_meal == tmp->args->philos_nb)
+		{
+			tmp->alive = 0;
+			tmp->state = DEAD;
+			exit(0);
+		}
+	}
+	return (tmp);
+}
+
 void		*routine(void *p_data)
 {
 	t_philo		*philo;
+	pthread_t	supervisor_pid;
 
 	philo = (t_philo*)p_data;
 	if (philo->id % 2 == 0)
 		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = get_tv_msec();
-	// monitor LAUNCH
+	pthread_create(&supervisor_pid, NULL, supervisor, philo);	
 	while (philo->alive)
 	{
 		eat(philo);
