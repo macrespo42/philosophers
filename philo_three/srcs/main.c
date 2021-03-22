@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 11:48:12 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:30:00 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void		*meal_supervisor(void *arg)
 
 	args = (t_args*)arg;
 	i = 0;
-	while (i < args->time_must_eat)
+	while (i < args->philos_nb)
 	{
 		sem_wait(args->meals);
 		i++;
