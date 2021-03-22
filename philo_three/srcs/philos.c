@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/21 14:05:01 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:56:57 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ t_philo		init_philos(t_args *args)
 	philo.args = args;
 	philo.first_meal = 0;
 	philo.eat_times = 0;
+	philo.total_meal = 0;
 	return (philo);
 }

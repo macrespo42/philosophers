@@ -28,6 +28,7 @@
 # define EXIT_FAILURE 1
 # define SEM_FORKS "forks"
 # define SEM_DEATH "printer"
+# define SEM_MEAL "meals"
 
 enum				e_state
 {
@@ -47,21 +48,21 @@ typedef struct		s_args {
 	int				time_must_eat;
 	int				death_flag;
 	long			initial_time;
-	int				total_meal;
+	pid_t			*pids;
 	sem_t			*forks;
 	sem_t			*printer;
+	sem_t			*meals;
 }					t_args;
 
 typedef struct		s_philo {
-	pthread_t		philo_pid;
 	int				id;
 	int				alive;
 	int				eat_times;
 	int				first_meal;
 	long			last_meal;
+	int				total_meal;
 	enum e_state	state;
 	t_args			*args;
-	struct s_philo	*next;
 }					t_philo;
 
 int					ft_atoi(const char *str);

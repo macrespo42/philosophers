@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/21 16:44:07 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:57:32 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		eat(t_philo *philo)
 	sem_post(philo->args->forks);
 	philo->state = SLEEPING;
 	if (philo->eat_times == philo->args->time_must_eat)
-		philo->args->total_meal += 1;
+		philo->total_meal = 1;
 	philo->eat_times += 1;
 }
 
@@ -49,7 +49,9 @@ void			*supervisor(void *p_data)
 {
 	t_philo		*tmp;
 	long		now;
+	int			meal_done;
 
+	meal_done = 0;
 	tmp = (t_philo*)p_data;
 	while (tmp->alive)
 	{
@@ -62,11 +64,10 @@ void			*supervisor(void *p_data)
 			print_state("died", 0, tmp);
 			exit(0);
 		}
-		if (tmp->args->total_meal == tmp->args->philos_nb)
+		if (meal_done == 0 && tmp->total_meal == 1)
 		{
-			tmp->alive = 0;
-			tmp->state = DEAD;
-			exit(0);
+			meal_done = 1;
+			sem_post(tmp->args->meals);
 		}
 	}
 	return (tmp);

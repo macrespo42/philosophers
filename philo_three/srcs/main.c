@@ -6,35 +6,58 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/21 16:42:05 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:58:25 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		init_routine(t_args *args, t_philo *philo)
+void		*meal_supervisor(void *arg)
 {
 	int		i;
-	pid_t	*pids;
+	t_args	*args;
 
-	pids = malloc(sizeof(pid_t) * args->philos_nb);
-	if (!pids)
+	args = (t_args*)arg;
+	i = 0;
+	while (i < args->time_must_eat)
+	{
+		sem_wait(args->meals);
+		i++;
+	}
+	i = 0;
+	while (i++ < args->philos_nb)
+		kill(args->pids[i], SIGTERM);
+	ft_memdel(args->pids);
+	// free_philos();
+	exit(0);
+	return (args);
+}
+
+void		init_routine(t_args *args, t_philo *philo)
+{
+	int			i;
+	pthread_t	meal_pid;
+
+	args->pids = malloc(sizeof(pid_t) * args->philos_nb);
+	if (!args->pids)
 		return ;
 	args->initial_time = get_tv_msec();
-	pids[0] = 1;
+	args->pids[0] = 1;
 	i = 0;
-	while (pids[i] != 0 && i++ < args->philos_nb)
+	while (args->pids[i] != 0 && i++ < args->philos_nb)
 	{
-		pids[i] = fork();
+		args->pids[i] = fork();
 		philo->id = i;
-		if (pids[i] == 0)
+		if (args->pids[i] == 0)
 			routine(philo);
 	}
+	if (args->time_must_eat != -1)
+		pthread_create(&meal_pid, NULL, meal_supervisor, args);
 	waitpid(-1, NULL, 0);
 	i = 0;
 	while (i++ < args->philos_nb)
-		kill(pids[i], SIGKILL);
-	ft_memdel(pids);
+		kill(args->pids[i], SIGKILL);
+	ft_memdel(args->pids);
 }
 
 int				main(int ac, char **av)
