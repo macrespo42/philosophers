@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 10:58:25 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:48:12 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		*meal_supervisor(void *arg)
 	while (i++ < args->philos_nb)
 		kill(args->pids[i], SIGTERM);
 	ft_memdel(args->pids);
-	// free_philos();
+	free_philos();
 	exit(0);
 	return (args);
 }
@@ -71,7 +71,7 @@ int				main(int ac, char **av)
 			return (print_error("Error: bad arguments"));
 		philo = init_philos(&args);
 		init_routine(&args, &philo);
-		free_philos(&philo);
+		free_philos();
 	}
 	else
 		return (print_error("Error: bad numbers of arguments"));

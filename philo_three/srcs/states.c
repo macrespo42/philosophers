@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 10:57:32 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:50:55 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void		*routine(void *p_data)
 	pthread_t	supervisor_pid;
 
 	philo = (t_philo*)p_data;
+	ft_memdel(philo->args->pids);
 	if (philo->id % 2 == 0)
 		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = get_tv_msec();

@@ -6,17 +6,17 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/26 13:55:48 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 10:56:57 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:59:27 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		free_philos(t_philo *head)
+void		free_philos(void)
 {
-	(void)head;
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_DEATH);
+	sem_unlink(SEM_MEAL);
 }
 
 t_philo		init_philos(t_args *args)

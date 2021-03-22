@@ -70,7 +70,7 @@ int					print_error(const char *error_msg);
 int					get_philo_infos(int ac, char **av, t_args *args);
 long				get_tv_msec(void);
 t_philo				init_philos(t_args *args);
-void				free_philos(t_philo *head);
+void				free_philos(void);
 void				ft_memdel(void *ptr);
 void				ft_msleep(int milliseconds);
 void				init_routine(t_args *args, t_philo *philo);
