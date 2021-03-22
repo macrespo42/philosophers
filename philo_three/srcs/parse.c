@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 14:47:52 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 11:50:49 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:34:01 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	get_philo_infos(int ac, char **av, t_args *args)
 	args->time_must_eat = 1;
 	args->death_flag = 0;
 	free_philos();
-	args->forks = sem_open(SEM_FORKS, O_CREAT, 755, (unsigned int)args->philos_nb);
+	args->forks = sem_open(SEM_FORKS, O_CREAT, 755,
+	(unsigned int)args->philos_nb);
 	args->printer = sem_open(SEM_DEATH, O_CREAT, 755, 1);
 	args->meals = sem_open(SEM_MEAL, O_CREAT, 755, 0);
 	sem_post(args->printer);

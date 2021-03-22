@@ -6,13 +6,13 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 11:15:12 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 13:30:00 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:35:20 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void		*meal_supervisor(void *arg)
+void	*meal_supervisor(void *arg)
 {
 	int		i;
 	t_args	*args;
@@ -33,7 +33,7 @@ void		*meal_supervisor(void *arg)
 	return (args);
 }
 
-void		init_routine(t_args *args, t_philo *philo)
+void	init_routine(t_args *args, t_philo *philo)
 {
 	int			i;
 	pthread_t	meal_pid;
@@ -60,7 +60,7 @@ void		init_routine(t_args *args, t_philo *philo)
 	ft_memdel(args->pids);
 }
 
-int				main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_philo		philo;
 	t_args		args;

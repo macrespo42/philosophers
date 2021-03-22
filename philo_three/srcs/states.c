@@ -6,7 +6,7 @@
 /*   By: macrespo <macrespo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:33:23 by macrespo          #+#    #+#             */
-/*   Updated: 2021/03/22 11:50:55 by macrespo         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:34:42 by macrespo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void		eat(t_philo *philo)
 	philo->eat_times += 1;
 }
 
-void			*supervisor(void *p_data)
+void		*supervisor(void *p_data)
 {
 	t_philo		*tmp;
 	long		now;
@@ -83,7 +83,7 @@ void		*routine(void *p_data)
 	if (philo->id % 2 == 0)
 		ft_msleep(philo->args->time_to_eat);
 	philo->last_meal = get_tv_msec();
-	pthread_create(&supervisor_pid, NULL, supervisor, philo);	
+	pthread_create(&supervisor_pid, NULL, supervisor, philo);
 	while (philo->alive)
 	{
 		eat(philo);
